@@ -1,45 +1,47 @@
 
 
-function checkProbabilityTheory(count) {
-
-  const MIN = 100;
-  const MAX = 1000;
-
-  let evenCount = 0;
-  let oddCount  = 0;
-
-  for (let i = 0; i < count; i++) {
-   
-    const n = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN;
-
-    
-    if (n % 2 === 0) {
-      evenCount++;
-    } else {
-      oddCount++;
+var services = {
+"стрижка": "60 грн",
+"гоління": "80 грн",
+"Миття голови": "100 грн",
+price: function () {
+    let total = 0;
+    for (let key in this) {
+        if (typeof this[key] === "string") {
+            total += parseFloat(this[key])
     }
-  }
-
-  const evenPct = (evenCount / count) * 100;
-  const oddPct  = (oddCount  / count) * 100;
-
-  
-  const expectedEvenPct = (451 / 901) * 100;
-  const expectedOddPct  = 100 - expectedEvenPct;
-
-  const tolerance = 1; 
-  const isCloseToTheory = Math.abs(evenPct - expectedEvenPct) <= tolerance;
-
-  return {
-    count,
-    evenCount,
-    oddCount,
-    evenPct,
-    oddPct,
-    expectedEvenPct,
-    expectedOddPct,
-    tolerance,
-    isCloseToTheory
-  };
 }
-console.log(checkProbabilityTheory(100))
+console.log("Загальна вартiсть послуг: " + total)
+},
+minPrice: function () {
+    let min = Infinity;
+    for (let key in this) {
+        if (typeof this[key] === "string") {
+            min = Math.min(min, parseFloat(this[key]))
+            if (min != 0) {
+                min = Math.min(min, parseFloat(this[key]))
+            }
+        }
+    }
+console.log('Мiнiмальна вартiсть послуг: ' + min)
+},
+
+maxPrice: function () {
+    let max = -Infinity;
+    for (let key in this) {
+        if (typeof this[key] === "string") {
+            max = Math.max(max, parseFloat(this[key]))
+        }
+    }
+console.log("Максимальная вартiсть послуг: " + max)
+},
+};
+
+services['фарбування'] = "150 грн";
+services['манiкюр'] = "300.50 грн"
+services['педикюр'] = "250.75 грн"
+
+
+services.price()
+services.minPrice()
+services.maxPrice()
