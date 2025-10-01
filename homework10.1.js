@@ -17,7 +17,8 @@ var arr = [
 ];
 
 const validEmail = /^[A-Za-z0-9]+\.{1}[A-Za-z0-9]+@(gmail\.com|yahoo\.com)$/;
-const ValidatedArr = arr.filter(user => validEmail.test(user.email));
-console.log(ValidatedArr)
+const ValidatedArr = arr
+.filter(user => validEmail.test(user.email))
+.map(user => user.email)
 
-var re = /^a-zA-Z
+console.log(ValidatedArr)
