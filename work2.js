@@ -1,17 +1,26 @@
-"use strict"
-
-
 function pow(x, y) {
+    if (y < 0) {
+        if (x === 0) return Infinity;
+        return 1 / pow(x, -y);
+    }
     let result = 1; 
+    if (y === 0) return 1;
         for (let i = 0; i < y; i++) { 
             result *= x;
+    
         }
 
     return result;
 }
-    const resultAll = pow(4,3);
-    console.log(resultAll)
-     
+    
+    
+    console.log(pow(4,3))
+    console.log(pow(5,-3))
+    console.log(pow(4,0))
+
+
+
+
 
 function SayHello() {
     console.log("Привіт Javascript")
